@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">FirebaseExample</string>
+    <string name="hint_correo">Correo electrónico</string>
+    <string name="hint_contrasena">Contraseña</string>
+    <string name="bIniciarSesion">Iniciar sesión</string>
+    <string name="bCrearCuenta">Crear cuenta</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="cerrarSesion">Cerrar sesión</string>
+
+    <string name="facebook_app_id">159514808044247</string>
+    <string name="fb_login_protocol_scheme">fb159514808044247</string>
+    <string name="title_activity_login">iniciar sesion</string>
+
+</resources>
