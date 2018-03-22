@@ -71,6 +71,19 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (googleSignInResult.isSuccess()){
             AuthCredential authCredential = GoogleAuthProvider.getCredential(
                     googleSignInResult.getSignInAccount().getIdToken(),null);
+
+            firebaseAuth.signInWithCredential(authCredential).
+                    addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(i);
+                    }else {
+                        Toast.makeText(LoginActivity.this, "error inicio de sesion",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 
@@ -105,7 +118,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     public void crearCuentaFirebase(String correo, String contrasena){
-        firebaseAuth.createUserWithEmailAndPassword(correo,contrasena).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(correo,contrasena).
+                addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
@@ -123,7 +137,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void iniciarSesionFirebase(String correo, String contrasena) {
-        firebaseAuth.signInWithEmailAndPassword(correo,contrasena).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(correo,contrasena).
+                addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
